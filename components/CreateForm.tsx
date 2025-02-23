@@ -27,8 +27,9 @@ import { toast } from "sonner";
 import { createForm } from "@/actions/form";
 import { formSchema, FormSchema } from "@/schema/form";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 export default function CreateForm() {
+  const router = useRouter();
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,7 +45,7 @@ export default function CreateForm() {
       setIsSubmitting(true);
       const formId = await createForm(data);
       toast.success("Form created successfully");
-      console.log(formId);
+      router.push(`/build/${formId}`);
     } catch (error) {
       toast.error("Something went wrong");
       console.log(error);
@@ -58,7 +59,7 @@ export default function CreateForm() {
       <DialogTrigger asChild>
         <Button
           variant={"outline"}
-          className="group border border-primary/20 h-[190px] items-center justify-center hover:border-primary hover:cursor-pointer border-dashed gap-4 flex flex-col"
+          className="group border border-primary/20 min-h-[190px] h-auto items-center justify-center hover:border-primary hover:cursor-pointer border-dashed gap-4 flex flex-col"
         >
           <Plus className="w-8 h-8 text-muted-foreground group-hover:text-primary transition-colors" />
           <p className="font-bold text-muted-foreground text-xl group-hover:text-primary">
