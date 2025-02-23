@@ -1,15 +1,12 @@
 import Link from "next/link";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import { Avatar } from "@/components/ui/avatar";
-import { currentUser } from "@clerk/nextjs/server";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const Layout = async ({ children }: Props) => {
-  const user = await currentUser();
-  console.log(user);
   return (
     <div className="flex flex-col min-h-screen bg-background max-h-screen">
       <nav className="flex justify-between border-b border-border h-[60px] px-4 py-2">
