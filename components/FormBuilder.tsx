@@ -119,7 +119,7 @@ const FormBuilder = ({ form }: { form: Form }) => {
           </Breadcrumb>
           <Separator className="block sm:hidden" />
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 overflow-x-auto">
             <PreviewDialog />
             <DeleteBtn id={form.id} title="Delete" />
             {!form.published && (

@@ -54,7 +54,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
           </BreadcrumbList>
         </Breadcrumb>
         <Separator className="block sm:hidden" />
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 overflow-x-auto">
           <Button
             variant="outline"
             size="sm"
