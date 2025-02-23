@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
-
+import DesignerContextProvider from "@/components/contexts/DesignerContext";
+import NextTopLoader from "nextjs-toploader";
+import { ClerkProvider } from "@clerk/nextjs";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,8 +30,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <Toaster />
+        <ClerkProvider>
+          <NextTopLoader color="#fca5a5" />
+          <DesignerContextProvider>
+            {children}
+            <Toaster />
+          </DesignerContextProvider>
+        </ClerkProvider>
       </body>
     </html>
   );
