@@ -62,7 +62,7 @@ export default function FormCard({ form }: { form: Form }) {
       <CardFooter>
         {form.published ? (
           <Button className="w-full mt-2 text-sm gap-4" asChild>
-            <Link href={`/form/${form.id}`}>
+            <Link href={`/dashboard/form/${form.id}`}>
               View submissions
               <ArrowRight className="w-4 h-4" />
             </Link>
@@ -74,7 +74,7 @@ export default function FormCard({ form }: { form: Form }) {
               variant={"secondary"}
               asChild
             >
-              <Link href={`/build/${form.id}`}>
+              <Link href={`/dashboard/build/${form.id}`}>
                 Edit form
                 <PencilIcon className="w-4 h-4" />
               </Link>

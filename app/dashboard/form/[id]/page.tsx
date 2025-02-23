@@ -15,6 +15,14 @@ import {
 } from "@/components/ui/table";
 import { formatDistance } from "date-fns";
 import DeleteBtn from "@/components/DeleteBtn";
+import {
+  Breadcrumb,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbList,
+  BreadcrumbItem,
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -26,28 +34,47 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   }
 
   return (
-    <div className="flex flex-col w-full p-4">
-      <div className="flex w-full items-center justify-between border-b-2 py-2">
-        <Button
-          variant="link"
-          className="text-muted-foreground hover:text-[#fca5a5] "
-          asChild
-        >
-          <Link href={`/submit/${form.id}`} target="_blank">
-            <span className="text-3xl truncate font-bold">{form.name}</span>
-            <ExternalLinkIcon className="w-4 h-4" />
-          </Link>
-        </Button>
+    <div className="flex flex-col w-full px-4">
+      <div className="flex flex-col sm:flex-row gap-2 w-full sm:items-center sm:justify-between border-b-2 py-2">
+        <Breadcrumb className="mt-2 ">
+          <BreadcrumbList className="flex flex-nowrap text-nowrap gap-2">
+            <BreadcrumbItem>
+              <BreadcrumbLink href={"/dashboard"}>Dashboard</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <Link href={`/dashboard/form/${form.id}`}>
+                <h2 className="text-2xl font-bold">
+                  <span className="text-muted-foreground mr-2">
+                    {form.name}
+                  </span>
+                </h2>
+              </Link>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <Separator className="block sm:hidden" />
         <div className="flex items-center gap-4">
-          <span className="flex items-center gap-2">
-            <span className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="text-muted-foreground hover:text-[#fca5a5] "
+            asChild
+          >
+            <Link href={`/submit/${form.id}`} target="_blank">
+              Visit form
+              <ExternalLinkIcon className="w-4 h-4" />
+            </Link>
+          </Button>
+          <span className="flex items-center gap-2 outline outline-1 outline-border rounded-md p-2">
+            <span className="flex items-center gap-2 text-nowrap">
               <EyeIcon className="w-4 h-4" />
-              {views.toLocaleString()}
+              {views.toLocaleString()} views
             </span>
             •
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 text-nowrap">
               <FileIcon className="w-4 h-4" />
-              {submissions.toLocaleString()}
+              {submissions.toLocaleString()} submissions
             </span>
           </span>
           <DeleteBtn id={id} />

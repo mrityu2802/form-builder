@@ -12,9 +12,11 @@ const Layout = async ({ children }: Props) => {
       <nav className="flex justify-between border-b border-border h-[60px] px-4 py-2">
         <Link
           href="/"
-          className="flex items-center bg-gradient-to-r from-red-400 to-slate-400 text-transparent bg-clip-text hover:cursor-pointer"
+          className="flex items-centerbg-gradient-to-b from-background to-secondary/20 hover:cursor-pointer"
         >
-          <span className="text-2xl font-bold">Form Builder</span>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary-foreground text-transparent bg-clip-text">
+            Form Builder
+          </h1>
         </Link>
         <Avatar className="size-9 shadow-sm">
           <SignedIn>

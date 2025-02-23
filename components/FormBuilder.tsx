@@ -21,6 +21,15 @@ import { toast } from "sonner";
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import DeleteBtn from "./DeleteBtn";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Separator } from "./ui/separator";
+
 const FormBuilder = ({ form }: { form: Form }) => {
   const { setFormElements, setSelectedElement } = useDesigner();
   const mouseSensor = useSensor(MouseSensor, {
@@ -44,7 +53,7 @@ const FormBuilder = ({ form }: { form: Form }) => {
 
   const url =
     typeof window !== "undefined"
-      ? `${window.location.origin}/form/${form.id}`
+      ? `${window.location.origin}/dashboard/form/${form.id}`
       : "";
   if (form.published) {
     return (
@@ -76,7 +85,7 @@ const FormBuilder = ({ form }: { form: Form }) => {
               </Link>
             </Button>
             <Button variant="link" className="p-0" asChild>
-              <Link href={`/form/${form.id}`}>
+              <Link href={`/dashboard/form/${form.id}`}>
                 Form details
                 <ArrowRightIcon className="w-4 h-4" />
               </Link>
@@ -89,12 +98,28 @@ const FormBuilder = ({ form }: { form: Form }) => {
 
   return (
     <DndContext sensors={sensors}>
-      <main className="flex flex-col gap-4 w-full">
-        <nav className="flex items-center justify-between border-b-2 border-border py-4">
-          <h2 className="text-2xl font-bold">
-            <span className="text-muted-foreground mr-2">{form.name}</span>
-          </h2>
-          <div className="flex items-center gap-2">
+      <main className="flex flex-col gap-1 w-full">
+        <nav className="flex flex-col sm:flex-row gap-2 w-full sm:items-center sm:justify-between border-b-2 py-2">
+          <Breadcrumb className="mt-2 ">
+            <BreadcrumbList className="flex flex-nowrap text-nowrap gap-2">
+              <BreadcrumbItem>
+                <BreadcrumbLink href={"/dashboard"}>Dashboard</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <Link href={`/dashboard/build/${form.id}`}>
+                  <h2 className="text-2xl font-bold">
+                    <span className="text-muted-foreground mr-2">
+                      {form.name}
+                    </span>
+                  </h2>
+                </Link>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          <Separator className="block sm:hidden" />
+
+          <div className="flex items-center gap-4">
             <PreviewDialog />
             <DeleteBtn id={form.id} title="Delete" />
             {!form.published && (

@@ -45,7 +45,7 @@ export default function CreateForm() {
       setIsSubmitting(true);
       const formId = await createForm(data);
       toast.success("Form created successfully");
-      router.push(`/build/${formId}`);
+      router.push(`/dashboard/build/${formId}`);
     } catch (error) {
       toast.error("Something went wrong");
       console.log(error);
