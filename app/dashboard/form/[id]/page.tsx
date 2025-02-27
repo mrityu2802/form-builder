@@ -66,7 +66,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
               <ExternalLinkIcon className="w-4 h-4" />
             </Link>
           </Button>
-          <span className="flex items-center gap-2 outline outline-1 outline-border rounded-md p-2">
+          <span className="flex items-center gap-2 outline outline-1 outline-border rounded-md px-2 py-[5.6px]">
             <span className="flex items-center gap-2 text-nowrap">
               <EyeIcon className="w-4 h-4" />
               {views.toLocaleString()} views
